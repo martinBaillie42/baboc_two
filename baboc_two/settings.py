@@ -1,4 +1,10 @@
 # Django settings for baboc_two project.
+import os
+from os.path import abspath, dirname, join
+from os import pardir
+
+APP_ROOT = abspath(dirname(__file__))
+PROJECT_ROOT = abspath(join(APP_ROOT, pardir))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,8 +17,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': join(APP_ROOT, 'baboc.db').replace('\\', '/'),                     # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -154,3 +160,6 @@ LOGGING = {
         },
     }
 }
+
+
+# TODO: find all current apps/modules - to check we are in the correct django route
